@@ -30,8 +30,8 @@ stan xs mean = sqrt (totalSum / (fromIntegral $ length xs))
              quadrSum = map (^2) innerSum
              totalSum = foldr (+) 0 $ quadrSum
 
-allPoints2019 = map fromIntegral $ map points2019 $ Map.elems testMap :: [Double]
-allPoints2018 = map fromIntegral $ map points2018 $ Map.elems testMap :: [Double]
+allPoints2019 = map fromIntegral $ map points2019 $ Map.elems dummyTeams :: [Double]
+allPoints2018 = map fromIntegral $ map points2018 $ Map.elems dummyTeams :: [Double]
 mean2019 = getMean allPoints2019
 mean2018 = getMean allPoints2018
 stan2019 = stan allPoints2019 mean2019
