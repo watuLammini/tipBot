@@ -11,6 +11,19 @@ import qualified Data.Text as Text
 import qualified Data.ByteString.Lazy as B
 import qualified Data.HashMap.Strict as HM
 
+instance FromJSON Teams where
+  parseJSON = withArray "Teams" $ \array -> do
+    parsedArray <- V.mapM parseTeam array
+    let parsedMap = V.foldr (\team theMap -> Map.insert (name team) team theMap) Map.empty parsedArray
+    return $ Teams parsedMap
+
+parseTeam :: Value -> Parser Team
+parseTeam = withObject "Team" (\o -> do
+  name <- o .: "TeamName"
+  points2019 <- o .: "Points"
+  let points2018 = 0
+  return Team {..})
+
 jsonPath :: FilePath
 jsonPath = "data/table2019.json"
 
@@ -19,62 +32,14 @@ getJSON = B.readFile jsonPath
 
 decodeJSON = do
   json <- getJSON
-  return (decode json :: Maybe Teams)
-
-newtype TeamsTest = TeamsTest (V.Vector String)
-
-instance FromJSON Teams where
-  parseJSON = withArray "Teams" (\array -> do
--- Versuch 1
---    arri <- decode array
---    let headi = V.head arri
--- Lösung 1
---    let headRaw = array V.! 0
---    head <- parseJSON headRaw
--- Lösung 2
---    let parsedArray = V.map parseJSON array
-    parsedArray <- mapM parseTeam' (V.toList array)
-    let parsedMap = foldr (\team theMap -> Map.insert (name team) team theMap) Map.empty parsedArray
-    let head = case (V.head array) of
-                  Object o -> o
-                  _ -> HM.empty
-    name <- head .: "TeamName" :: Parser String
---    return $ TeamsTest parsedArray)
-    return $ Teams parsedMap)
---    return resultArray)
-
-
-parseTeam :: Value -> Parser String
-parseTeam (Object o) = do
-  shName <- o .: "ShortName"
-  return shName
-
-parseTeam' :: Value -> Parser Team
-parseTeam' = withObject "Team" (\o -> do
-  name <- o .: "TeamName"
-  points2019 <- o .: "Points"
-  let points2018 = 0
-  return Team {..})
---instance FromJSON Team where
---  parseJSON = withArray "Team" (\array -> do
----- Versuch 1
-----    arri <- decode array
-----    let headi = V.head arri
----- Lösung 1
-----    let headRaw = array V.! 0
-----    head <- parseJSON headRaw
----- Lösung 2
---    let head = case (V.head array) of
---                  Object o -> o
---                  _ -> HM.empty
---    name <- head .: "TeamName"
---    return Team { name=name })
-
--- Old version
---  parseJSON (Object v) =
---    pure Team { name = "hi" }
-----    where name' = (head v) Map.! "TeamName"
---  parseJSON _ = empty
+  let jsonEitherValue = eitherDecode json :: Either String Value
+  case jsonEitherValue of
+    Left error -> putStr error
+    Right value -> return ()
+  let jsonValue = case jsonEitherValue of
+                    Left error -> Null
+                    Right value -> value
+  return (parseEither parseJSON jsonValue :: Either String Teams)
 
 -- Test data
 
