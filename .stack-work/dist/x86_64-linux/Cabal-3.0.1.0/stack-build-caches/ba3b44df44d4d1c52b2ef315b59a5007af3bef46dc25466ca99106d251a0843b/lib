@@ -1,19 +1,27 @@
 /media/watulammini/daten/Uni/Medieninformatik/Master/FoFunPro/Projekt/tipBot/tipBot.cabal:
-  hash: 3931d857bd8515085cb1b2fe899e0241adbd6d50750335d1919dcb417d056d59
-  size: 1476
-  modtime: 1598183881
+  hash: f05715d89144834452d204b6aa61cb761c90fe28b55b4d12788f9fb7f0057634
+  size: 1896
+  modtime: 1599505585
 /media/watulammini/daten/Uni/Medieninformatik/Master/FoFunPro/Projekt/tipBot/src/Lib.hs:
-  hash: 11d6d255cb397fa45980eb516ea685146565d9de2108c4eea356ea41db8364be
-  size: 88
-  modtime: 1598183881
+  hash: 995510051c8088d0e9a7c54c62b611cd5ae80de7bb08c00844d478e39cb0d2f1
+  size: 1660
+  modtime: 1599485068
 /media/watulammini/daten/Uni/Medieninformatik/Master/FoFunPro/Projekt/tipBot/package.yaml:
-  hash: ebe6bc45a9a6a4fbdcfae9f0cb735a2441dc26e9377079dcb7dfbb7f89bca044
-  size: 1163
-  modtime: 1598183881
+  hash: b6ce0b78411025c021cb1f545c7bb5f21fb96757ddf51f1662bc4486509d7203
+  size: 1428
+  modtime: 1599505580
 /media/watulammini/daten/Uni/Medieninformatik/Master/FoFunPro/Projekt/tipBot/README.md:
   hash: e21322f46ffe43cda29febef7047f1e88a548a126cea250e496555617e36cf6f
   size: 9
   modtime: 1598183881
+/media/watulammini/daten/Uni/Medieninformatik/Master/FoFunPro/Projekt/tipBot/src/Data.hs:
+  hash: b2ec35ab685ff5d01de17faa564151860ff3a510afea854dc2e99809eecea947
+  size: 3357
+  modtime: 1599505580
+/media/watulammini/daten/Uni/Medieninformatik/Master/FoFunPro/Projekt/tipBot/src/Types.hs:
+  hash: ef1b1be1d31f7af3011c6a09266193680e38f382965b1909687295ec21013847
+  size: 674
+  modtime: 1599403024
 /media/watulammini/daten/Uni/Medieninformatik/Master/FoFunPro/Projekt/tipBot/ChangeLog.md:
   hash: edd5ad5f0b30852375884b2bf8cf33ee1f911da3744f8a6a45bbfe01e7e4d79d
   size: 46

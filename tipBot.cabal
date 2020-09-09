@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 175e9a01712e3fce438ae620425f89c89c4245aa00ec3e0a5ead421f923b2466
+-- hash: b58781d6940275c669409c60b785c9b411bef0fa9e8605ecaf30397c7ecfd292
 
 name:           tipBot
 version:        0.1.0.0
@@ -27,6 +27,7 @@ source-repository head
 
 library
   exposed-modules:
+      Data
       Lib
       Types
   other-modules:
@@ -34,7 +35,13 @@ library
   hs-source-dirs:
       src
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , bytestring
+    , containers
+    , text
+    , unordered-containers
+    , vector
   default-language: Haskell2010
 
 executable tipBot-exe
@@ -43,10 +50,17 @@ executable tipBot-exe
       Paths_tipBot
   hs-source-dirs:
       app
+  default-extensions: OverloadedStrings DeriveGeneric RecordWildCards
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , bytestring
+    , containers
+    , text
     , tipBot
+    , unordered-containers
+    , vector
   default-language: Haskell2010
 
 test-suite tipBot-test
@@ -56,8 +70,15 @@ test-suite tipBot-test
       Paths_tipBot
   hs-source-dirs:
       test
+  default-extensions: OverloadedStrings DeriveGeneric RecordWildCards
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , bytestring
+    , containers
+    , text
     , tipBot
+    , unordered-containers
+    , vector
   default-language: Haskell2010

@@ -22,6 +22,12 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
+- containers
+- unordered-containers
+- aeson
+- text
+- bytestring
+- vector
 
 library:
   source-dirs: src
@@ -36,6 +42,10 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - tipBot
+    default-extensions:
+    - OverloadedStrings
+    - DeriveGeneric
+    - RecordWildCards
 
 tests:
   tipBot-test:
@@ -47,3 +57,7 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - tipBot
+    default-extensions:
+    - OverloadedStrings
+    - DeriveGeneric
+    - RecordWildCards

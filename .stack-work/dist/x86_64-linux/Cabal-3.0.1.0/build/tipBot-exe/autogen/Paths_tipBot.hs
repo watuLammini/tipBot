@@ -30,7 +30,7 @@ version = Version [0,1,0,0] []
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 
 bindir     = "/media/watulammini/daten/Uni/Medieninformatik/Master/FoFunPro/Projekt/tipBot/.stack-work/install/x86_64-linux/ba3b44df44d4d1c52b2ef315b59a5007af3bef46dc25466ca99106d251a0843b/8.8.3/bin"
-libdir     = "/media/watulammini/daten/Uni/Medieninformatik/Master/FoFunPro/Projekt/tipBot/.stack-work/install/x86_64-linux/ba3b44df44d4d1c52b2ef315b59a5007af3bef46dc25466ca99106d251a0843b/8.8.3/lib/x86_64-linux-ghc-8.8.3/tipBot-0.1.0.0-Huy6StEx7fyEq3suiKxCtb-tipBot-exe"
+libdir     = "/media/watulammini/daten/Uni/Medieninformatik/Master/FoFunPro/Projekt/tipBot/.stack-work/install/x86_64-linux/ba3b44df44d4d1c52b2ef315b59a5007af3bef46dc25466ca99106d251a0843b/8.8.3/lib/x86_64-linux-ghc-8.8.3/tipBot-0.1.0.0-GLLjgQzDv2k3Vk8BDUBg87-tipBot-exe"
 dynlibdir  = "/media/watulammini/daten/Uni/Medieninformatik/Master/FoFunPro/Projekt/tipBot/.stack-work/install/x86_64-linux/ba3b44df44d4d1c52b2ef315b59a5007af3bef46dc25466ca99106d251a0843b/8.8.3/lib/x86_64-linux-ghc-8.8.3"
 datadir    = "/media/watulammini/daten/Uni/Medieninformatik/Master/FoFunPro/Projekt/tipBot/.stack-work/install/x86_64-linux/ba3b44df44d4d1c52b2ef315b59a5007af3bef46dc25466ca99106d251a0843b/8.8.3/share/x86_64-linux-ghc-8.8.3/tipBot-0.1.0.0"
 libexecdir = "/media/watulammini/daten/Uni/Medieninformatik/Master/FoFunPro/Projekt/tipBot/.stack-work/install/x86_64-linux/ba3b44df44d4d1c52b2ef315b59a5007af3bef46dc25466ca99106d251a0843b/8.8.3/libexec/x86_64-linux-ghc-8.8.3/tipBot-0.1.0.0"
