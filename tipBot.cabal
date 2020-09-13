@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: b58781d6940275c669409c60b785c9b411bef0fa9e8605ecaf30397c7ecfd292
+-- hash: fb145e4f520f1710a515c05315ac9b4491289c8983e43e0624f634cbf2e610b4
 
 name:           tipBot
 version:        0.1.0.0
@@ -40,6 +40,7 @@ library
     , bytestring
     , containers
     , text
+    , transformers
     , unordered-containers
     , vector
   default-language: Haskell2010
@@ -59,6 +60,7 @@ executable tipBot-exe
     , containers
     , text
     , tipBot
+    , transformers
     , unordered-containers
     , vector
   default-language: Haskell2010
@@ -79,6 +81,7 @@ test-suite tipBot-test
     , containers
     , text
     , tipBot
+    , transformers
     , unordered-containers
     , vector
   default-language: Haskell2010

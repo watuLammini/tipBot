@@ -10,6 +10,11 @@ data Team = Team {
   points2018 :: Int
   } deriving Show
 
+data TeamNew = TeamNew {
+  nameNew :: String,
+  points :: Map.Map Int Int
+  } deriving Show
+
 data Game = Game {
   gameID :: Int,
   team1 :: Team,
@@ -20,8 +25,20 @@ data Game = Game {
   saison :: Int
 } deriving Show
 
+data Game' = Game' {
+  gameID' :: Int,
+  team1' :: String,
+  team2' :: String,
+  goalsT1' :: Int,
+  goalsT2' :: Int,
+  spieltag' :: Int,
+  saison' :: Int
+} deriving Show
+
 newtype Teams = Teams { getTeams :: Map.Map String Team } deriving Show
---type Teams = Map.Map String Team
+newtype Games = Games { getGames :: Map.Map String Game } deriving Show
+newtype Games' = Games' { getGames' :: Map.Map String Game' } deriving Show
+
 
 getResult :: Game -> String
 getResult Game { goalsT1=goalsT1, goalsT2=goalsT2 } = show goalsT1 ++ ":" ++ show goalsT2

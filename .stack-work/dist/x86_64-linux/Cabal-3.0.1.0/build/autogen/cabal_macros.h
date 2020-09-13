@@ -66,6 +66,17 @@
   (major1) == 1 && (major2) == 2 && (minor) <= 4)
 #endif /* MIN_VERSION_text */
 
+/* package transformers-0.5.6.2 */
+#ifndef VERSION_transformers
+#define VERSION_transformers "0.5.6.2"
+#endif /* VERSION_transformers */
+#ifndef MIN_VERSION_transformers
+#define MIN_VERSION_transformers(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  5 || \
+  (major1) == 0 && (major2) == 5 && (minor) <= 6)
+#endif /* MIN_VERSION_transformers */
+
 /* package unordered-containers-0.2.10.0 */
 #ifndef VERSION_unordered_containers
 #define VERSION_unordered_containers "0.2.10.0"
@@ -188,10 +199,10 @@
 #endif /* MIN_TOOL_VERSION_strip */
 
 #ifndef CURRENT_PACKAGE_KEY
-#define CURRENT_PACKAGE_KEY "tipBot-0.1.0.0-82BxTVw9z7oGw7EixaOtva"
+#define CURRENT_PACKAGE_KEY "tipBot-0.1.0.0-5icttgrQol98EiJRcYz5vd"
 #endif /* CURRENT_PACKAGE_KEY */
 #ifndef CURRENT_COMPONENT_ID
-#define CURRENT_COMPONENT_ID "tipBot-0.1.0.0-82BxTVw9z7oGw7EixaOtva"
+#define CURRENT_COMPONENT_ID "tipBot-0.1.0.0-5icttgrQol98EiJRcYz5vd"
 #endif /* CURRENT_COMPONENT_ID */
 #ifndef CURRENT_PACKAGE_VERSION
 #define CURRENT_PACKAGE_VERSION "0.1.0.0"

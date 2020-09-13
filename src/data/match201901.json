@@ -1,0 +1,842 @@
+[
+  {
+    "MatchID": 55277,
+    "MatchDateTime": "2019-08-16T20:30:00",
+    "TimeZoneID": "W. Europe Standard Time",
+    "LeagueId": 4362,
+    "LeagueName": "1. Fußball-Bundesliga 2019/2020",
+    "MatchDateTimeUTC": "2019-08-16T18:30:00Z",
+    "Group": {
+      "GroupName": "1. Spieltag",
+      "GroupOrderID": 1,
+      "GroupID": 34200
+    },
+    "Team1": {
+      "TeamId": 40,
+      "TeamName": "FC Bayern",
+      "ShortName": "FC Bayern",
+      "TeamIconUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Logo_FC_Bayern_M%C3%BCnchen_%282002%E2%80%932017%29.svg/240px-Logo_FC_Bayern_M%C3%BCnchen_%282002%E2%80%932017%29.svg.png",
+      "TeamGroupName": null
+    },
+    "Team2": {
+      "TeamId": 54,
+      "TeamName": "Hertha BSC",
+      "ShortName": "Hertha BSC",
+      "TeamIconUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Hertha_BSC_Logo_2012.svg/2858px-Hertha_BSC_Logo_2012.svg.png",
+      "TeamGroupName": null
+    },
+    "LastUpdateDateTime": "2020-08-09T22:27:13.397",
+    "MatchIsFinished": true,
+    "MatchResults": [
+      {
+        "ResultID": 89318,
+        "ResultName": "Endergebnis",
+        "PointsTeam1": 2,
+        "PointsTeam2": 2,
+        "ResultOrderID": 2,
+        "ResultTypeID": 2,
+        "ResultDescription": "Ergebnis nach Ende der offiziellen Spielzeit"
+      },
+      {
+        "ResultID": 89319,
+        "ResultName": "Halbzeit",
+        "PointsTeam1": 1,
+        "PointsTeam2": 2,
+        "ResultOrderID": 1,
+        "ResultTypeID": 1,
+        "ResultDescription": "Zwischenstand zur Halbzeit"
+      }
+    ],
+    "Goals": [
+      {
+        "GoalID": 80231,
+        "ScoreTeam1": 1,
+        "ScoreTeam2": 0,
+        "MatchMinute": 24,
+        "GoalGetterID": 14563,
+        "GoalGetterName": "Robert Lewandowski",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      },
+      {
+        "GoalID": 80232,
+        "ScoreTeam1": 1,
+        "ScoreTeam2": 1,
+        "MatchMinute": 36,
+        "GoalGetterID": 16913,
+        "GoalGetterName": "Lukebakio",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      },
+      {
+        "GoalID": 80233,
+        "ScoreTeam1": 1,
+        "ScoreTeam2": 2,
+        "MatchMinute": 39,
+        "GoalGetterID": 17002,
+        "GoalGetterName": "Grujic, M.",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      },
+      {
+        "GoalID": 80234,
+        "ScoreTeam1": 2,
+        "ScoreTeam2": 2,
+        "MatchMinute": 60,
+        "GoalGetterID": 14563,
+        "GoalGetterName": "Robert Lewandowski",
+        "IsPenalty": true,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      }
+    ],
+    "Location": {
+      "LocationID": 491,
+      "LocationCity": "München",
+      "LocationStadium": "Alianz Arena"
+    },
+    "NumberOfViewers": null
+  },
+  {
+    "MatchID": 55278,
+    "MatchDateTime": "2019-08-17T15:30:00",
+    "TimeZoneID": "W. Europe Standard Time",
+    "LeagueId": 4362,
+    "LeagueName": "1. Fußball-Bundesliga 2019/2020",
+    "MatchDateTimeUTC": "2019-08-17T13:30:00Z",
+    "Group": {
+      "GroupName": "1. Spieltag",
+      "GroupOrderID": 1,
+      "GroupID": 34200
+    },
+    "Team1": {
+      "TeamId": 7,
+      "TeamName": "Borussia Dortmund",
+      "ShortName": "Dortmund",
+      "TeamIconUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/240px-Borussia_Dortmund_logo.svg.png",
+      "TeamGroupName": null
+    },
+    "Team2": {
+      "TeamId": 95,
+      "TeamName": "FC Augsburg",
+      "ShortName": "Augsburg",
+      "TeamIconUrl": "https://upload.wikimedia.org/wikipedia/de/b/b5/Logo_FC_Augsburg.svg",
+      "TeamGroupName": null
+    },
+    "LastUpdateDateTime": "2019-08-17T17:21:56.36",
+    "MatchIsFinished": true,
+    "MatchResults": [
+      {
+        "ResultID": 89333,
+        "ResultName": "Endergebnis",
+        "PointsTeam1": 5,
+        "PointsTeam2": 1,
+        "ResultOrderID": 2,
+        "ResultTypeID": 2,
+        "ResultDescription": "Ergebnis nach Ende der offiziellen Spielzeit"
+      },
+      {
+        "ResultID": 89334,
+        "ResultName": "Halbzeit",
+        "PointsTeam1": 1,
+        "PointsTeam2": 1,
+        "ResultOrderID": 1,
+        "ResultTypeID": 1,
+        "ResultDescription": "Zwischenstand zur Halbzeit"
+      }
+    ],
+    "Goals": [
+      {
+        "GoalID": 80249,
+        "ScoreTeam1": 0,
+        "ScoreTeam2": 1,
+        "MatchMinute": 1,
+        "GoalGetterID": 16153,
+        "GoalGetterName": "Florian Niederlechner",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      },
+      {
+        "GoalID": 80251,
+        "ScoreTeam1": 1,
+        "ScoreTeam2": 1,
+        "MatchMinute": 3,
+        "GoalGetterID": 16945,
+        "GoalGetterName": "Alcacer",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      },
+      {
+        "GoalID": 80270,
+        "ScoreTeam1": 2,
+        "ScoreTeam2": 1,
+        "MatchMinute": 51,
+        "GoalGetterID": 16502,
+        "GoalGetterName": "Sancho",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      },
+      {
+        "GoalID": 80271,
+        "ScoreTeam1": 3,
+        "ScoreTeam2": 1,
+        "MatchMinute": 57,
+        "GoalGetterID": 3426,
+        "GoalGetterName": "Marco Reus",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      },
+      {
+        "GoalID": 80273,
+        "ScoreTeam1": 4,
+        "ScoreTeam2": 1,
+        "MatchMinute": 59,
+        "GoalGetterID": 16945,
+        "GoalGetterName": "Alcacer",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      },
+      {
+        "GoalID": 80288,
+        "ScoreTeam1": 5,
+        "ScoreTeam2": 1,
+        "MatchMinute": 82,
+        "GoalGetterID": 14483,
+        "GoalGetterName": "Brandt, Julian",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      }
+    ],
+    "Location": null,
+    "NumberOfViewers": null
+  },
+  {
+    "MatchID": 55279,
+    "MatchDateTime": "2019-08-17T15:30:00",
+    "TimeZoneID": "W. Europe Standard Time",
+    "LeagueId": 4362,
+    "LeagueName": "1. Fußball-Bundesliga 2019/2020",
+    "MatchDateTimeUTC": "2019-08-17T13:30:00Z",
+    "Group": {
+      "GroupName": "1. Spieltag",
+      "GroupOrderID": 1,
+      "GroupID": 34200
+    },
+    "Team1": {
+      "TeamId": 6,
+      "TeamName": "Bayer Leverkusen",
+      "ShortName": "Leverkusen",
+      "TeamIconUrl": "https://upload.wikimedia.org/wikipedia/de/thumb/f/f7/Bayer_Leverkusen_Logo.svg/1280px-Bayer_Leverkusen_Logo.svg.png",
+      "TeamGroupName": null
+    },
+    "Team2": {
+      "TeamId": 31,
+      "TeamName": "SC Paderborn 07",
+      "ShortName": "Paderborn",
+      "TeamIconUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e3/SC_Paderborn_07_Logo.svg",
+      "TeamGroupName": null
+    },
+    "LastUpdateDateTime": "2019-08-17T17:22:00.19",
+    "MatchIsFinished": true,
+    "MatchResults": [
+      {
+        "ResultID": 89335,
+        "ResultName": "Endergebnis",
+        "PointsTeam1": 3,
+        "PointsTeam2": 2,
+        "ResultOrderID": 2,
+        "ResultTypeID": 2,
+        "ResultDescription": "Ergebnis nach Ende der offiziellen Spielzeit"
+      },
+      {
+        "ResultID": 89336,
+        "ResultName": "Halbzeit",
+        "PointsTeam1": 2,
+        "PointsTeam2": 2,
+        "ResultOrderID": 1,
+        "ResultTypeID": 1,
+        "ResultDescription": "Zwischenstand zur Halbzeit"
+      }
+    ],
+    "Goals": [
+      {
+        "GoalID": 80252,
+        "ScoreTeam1": 1,
+        "ScoreTeam2": 0,
+        "MatchMinute": 11,
+        "GoalGetterID": 16315,
+        "GoalGetterName": "Bailey",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      },
+      {
+        "GoalID": 80253,
+        "ScoreTeam1": 1,
+        "ScoreTeam2": 1,
+        "MatchMinute": 15,
+        "GoalGetterID": 14997,
+        "GoalGetterName": "S. Michel",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      },
+      {
+        "GoalID": 80255,
+        "ScoreTeam1": 2,
+        "ScoreTeam2": 1,
+        "MatchMinute": 19,
+        "GoalGetterID": 16261,
+        "GoalGetterName": "Kai Havertz\r\n",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      },
+      {
+        "GoalID": 80266,
+        "ScoreTeam1": 2,
+        "ScoreTeam2": 2,
+        "MatchMinute": 26,
+        "GoalGetterID": 16866,
+        "GoalGetterName": "Mamba",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      },
+      {
+        "GoalID": 80275,
+        "ScoreTeam1": 3,
+        "ScoreTeam2": 2,
+        "MatchMinute": 69,
+        "GoalGetterID": 16260,
+        "GoalGetterName": "Kevin Volland\r\n",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      }
+    ],
+    "Location": null,
+    "NumberOfViewers": null
+  },
+  {
+    "MatchID": 55281,
+    "MatchDateTime": "2019-08-17T15:30:00",
+    "TimeZoneID": "W. Europe Standard Time",
+    "LeagueId": 4362,
+    "LeagueName": "1. Fußball-Bundesliga 2019/2020",
+    "MatchDateTimeUTC": "2019-08-17T13:30:00Z",
+    "Group": {
+      "GroupName": "1. Spieltag",
+      "GroupOrderID": 1,
+      "GroupID": 34200
+    },
+    "Team1": {
+      "TeamId": 131,
+      "TeamName": "VfL Wolfsburg",
+      "ShortName": "Wolfsburg",
+      "TeamIconUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo-VfL-Wolfsburg.svg/1024px-Logo-VfL-Wolfsburg.svg.png",
+      "TeamGroupName": null
+    },
+    "Team2": {
+      "TeamId": 65,
+      "TeamName": "1. FC Köln",
+      "ShortName": "1. FC Köln",
+      "TeamIconUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/5/53/FC_Cologne_logo.svg/901px-FC_Cologne_logo.svg.png",
+      "TeamGroupName": null
+    },
+    "LastUpdateDateTime": "2019-08-17T17:24:49.363",
+    "MatchIsFinished": true,
+    "MatchResults": [
+      {
+        "ResultID": 89337,
+        "ResultName": "Endergebnis",
+        "PointsTeam1": 2,
+        "PointsTeam2": 1,
+        "ResultOrderID": 2,
+        "ResultTypeID": 2,
+        "ResultDescription": "Ergebnis nach Ende der offiziellen Spielzeit"
+      },
+      {
+        "ResultID": 89338,
+        "ResultName": "Halbzeit",
+        "PointsTeam1": 1,
+        "PointsTeam2": 0,
+        "ResultOrderID": 1,
+        "ResultTypeID": 1,
+        "ResultDescription": "Zwischenstand zur Halbzeit"
+      }
+    ],
+    "Goals": [
+      {
+        "GoalID": 80254,
+        "ScoreTeam1": 1,
+        "ScoreTeam2": 0,
+        "MatchMinute": 16,
+        "GoalGetterID": 16180,
+        "GoalGetterName": "Maximilian Arnold",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      },
+      {
+        "GoalID": 80272,
+        "ScoreTeam1": 2,
+        "ScoreTeam2": 0,
+        "MatchMinute": 60,
+        "GoalGetterID": 16906,
+        "GoalGetterName": "Weghorst",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      },
+      {
+        "GoalID": 80290,
+        "ScoreTeam1": 2,
+        "ScoreTeam2": 1,
+        "MatchMinute": 90,
+        "GoalGetterID": 14471,
+        "GoalGetterName": "Simon Terodde",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      }
+    ],
+    "Location": null,
+    "NumberOfViewers": null
+  },
+  {
+    "MatchID": 55283,
+    "MatchDateTime": "2019-08-17T15:30:00",
+    "TimeZoneID": "W. Europe Standard Time",
+    "LeagueId": 4362,
+    "LeagueName": "1. Fußball-Bundesliga 2019/2020",
+    "MatchDateTimeUTC": "2019-08-17T13:30:00Z",
+    "Group": {
+      "GroupName": "1. Spieltag",
+      "GroupOrderID": 1,
+      "GroupID": 34200
+    },
+    "Team1": {
+      "TeamId": 134,
+      "TeamName": "Werder Bremen",
+      "ShortName": "Bremen",
+      "TeamIconUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/SV-Werder-Bremen-Logo.svg/681px-SV-Werder-Bremen-Logo.svg.png",
+      "TeamGroupName": null
+    },
+    "Team2": {
+      "TeamId": 185,
+      "TeamName": "Fortuna Düsseldorf",
+      "ShortName": "Düsseldorf",
+      "TeamIconUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Fortuna_D%C3%BCsseldorf.svg/150px-Fortuna_D%C3%BCsseldorf.svg.png",
+      "TeamGroupName": null
+    },
+    "LastUpdateDateTime": "2019-08-17T17:24:50.787",
+    "MatchIsFinished": true,
+    "MatchResults": [
+      {
+        "ResultID": 89339,
+        "ResultName": "Endergebnis",
+        "PointsTeam1": 1,
+        "PointsTeam2": 3,
+        "ResultOrderID": 2,
+        "ResultTypeID": 2,
+        "ResultDescription": "Ergebnis nach Ende der offiziellen Spielzeit"
+      },
+      {
+        "ResultID": 89340,
+        "ResultName": "Halbzeit",
+        "PointsTeam1": 0,
+        "PointsTeam2": 1,
+        "ResultOrderID": 1,
+        "ResultTypeID": 1,
+        "ResultDescription": "Zwischenstand zur Halbzeit"
+      }
+    ],
+    "Goals": [
+      {
+        "GoalID": 80267,
+        "ScoreTeam1": 0,
+        "ScoreTeam2": 1,
+        "MatchMinute": 36,
+        "GoalGetterID": 3163,
+        "GoalGetterName": "Rouwen Hennings",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      },
+      {
+        "GoalID": 80268,
+        "ScoreTeam1": 1,
+        "ScoreTeam2": 1,
+        "MatchMinute": 47,
+        "GoalGetterID": 16022,
+        "GoalGetterName": "J. Eggestein",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      },
+      {
+        "GoalID": 80269,
+        "ScoreTeam1": 1,
+        "ScoreTeam2": 2,
+        "MatchMinute": 52,
+        "GoalGetterID": 15271,
+        "GoalGetterName": "Karaman",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      },
+      {
+        "GoalID": 80274,
+        "ScoreTeam1": 1,
+        "ScoreTeam2": 3,
+        "MatchMinute": 64,
+        "GoalGetterID": 14217,
+        "GoalGetterName": "Ayhan",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      }
+    ],
+    "Location": null,
+    "NumberOfViewers": null
+  },
+  {
+    "MatchID": 55284,
+    "MatchDateTime": "2019-08-17T15:30:00",
+    "TimeZoneID": "W. Europe Standard Time",
+    "LeagueId": 4362,
+    "LeagueName": "1. Fußball-Bundesliga 2019/2020",
+    "MatchDateTimeUTC": "2019-08-17T13:30:00Z",
+    "Group": {
+      "GroupName": "1. Spieltag",
+      "GroupOrderID": 1,
+      "GroupID": 34200
+    },
+    "Team1": {
+      "TeamId": 112,
+      "TeamName": "SC Freiburg",
+      "ShortName": "SC Freiburg",
+      "TeamIconUrl": "https://upload.wikimedia.org/wikipedia/de/thumb/f/f1/SC-Freiburg_Logo-neu.svg/739px-SC-Freiburg_Logo-neu.svg.png",
+      "TeamGroupName": null
+    },
+    "Team2": {
+      "TeamId": 81,
+      "TeamName": "1. FSV Mainz 05",
+      "ShortName": "FSV Mainz",
+      "TeamIconUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Logo_Mainz_05.svg/1099px-Logo_Mainz_05.svg.png",
+      "TeamGroupName": null
+    },
+    "LastUpdateDateTime": "2019-08-17T17:24:55.567",
+    "MatchIsFinished": true,
+    "MatchResults": [
+      {
+        "ResultID": 89341,
+        "ResultName": "Endergebnis",
+        "PointsTeam1": 3,
+        "PointsTeam2": 0,
+        "ResultOrderID": 2,
+        "ResultTypeID": 2,
+        "ResultDescription": "Ergebnis nach Ende der offiziellen Spielzeit"
+      },
+      {
+        "ResultID": 89342,
+        "ResultName": "Halbzeit",
+        "PointsTeam1": 0,
+        "PointsTeam2": 0,
+        "ResultOrderID": 1,
+        "ResultTypeID": 1,
+        "ResultDescription": "Zwischenstand zur Halbzeit"
+      }
+    ],
+    "Goals": [
+      {
+        "GoalID": 80276,
+        "ScoreTeam1": 1,
+        "ScoreTeam2": 0,
+        "MatchMinute": 82,
+        "GoalGetterID": 14393,
+        "GoalGetterName": "Höler",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      },
+      {
+        "GoalID": 80287,
+        "ScoreTeam1": 2,
+        "ScoreTeam2": 0,
+        "MatchMinute": 84,
+        "GoalGetterID": 449,
+        "GoalGetterName": "J. Schmid",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      },
+      {
+        "GoalID": 80289,
+        "ScoreTeam1": 3,
+        "ScoreTeam2": 0,
+        "MatchMinute": 86,
+        "GoalGetterID": 15274,
+        "GoalGetterName": "Waldschmidt",
+        "IsPenalty": true,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      }
+    ],
+    "Location": null,
+    "NumberOfViewers": null
+  },
+  {
+    "MatchID": 55280,
+    "MatchDateTime": "2019-08-17T18:30:00",
+    "TimeZoneID": "W. Europe Standard Time",
+    "LeagueId": 4362,
+    "LeagueName": "1. Fußball-Bundesliga 2019/2020",
+    "MatchDateTimeUTC": "2019-08-17T16:30:00Z",
+    "Group": {
+      "GroupName": "1. Spieltag",
+      "GroupOrderID": 1,
+      "GroupID": 34200
+    },
+    "Team1": {
+      "TeamId": 87,
+      "TeamName": "Borussia Mönchengladbach",
+      "ShortName": "Gladbach",
+      "TeamIconUrl": "https://upload.wikimedia.org/wikipedia/commons/8/81/Borussia_Mönchengladbach_logo.svg",
+      "TeamGroupName": null
+    },
+    "Team2": {
+      "TeamId": 9,
+      "TeamName": "FC Schalke 04",
+      "ShortName": "Schalke 04",
+      "TeamIconUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6d/FC_Schalke_04_Logo.svg",
+      "TeamGroupName": null
+    },
+    "LastUpdateDateTime": "2019-08-17T20:22:54.997",
+    "MatchIsFinished": true,
+    "MatchResults": [
+      {
+        "ResultID": 89354,
+        "ResultName": "Endergebnis",
+        "PointsTeam1": 0,
+        "PointsTeam2": 0,
+        "ResultOrderID": 2,
+        "ResultTypeID": 2,
+        "ResultDescription": "Ergebnis nach Ende der offiziellen Spielzeit"
+      },
+      {
+        "ResultID": 89355,
+        "ResultName": "Halbzeit",
+        "PointsTeam1": 0,
+        "PointsTeam2": 0,
+        "ResultOrderID": 1,
+        "ResultTypeID": 1,
+        "ResultDescription": "Zwischenstand zur Halbzeit"
+      }
+    ],
+    "Goals": [],
+    "Location": null,
+    "NumberOfViewers": null
+  },
+  {
+    "MatchID": 55282,
+    "MatchDateTime": "2019-08-18T15:30:00",
+    "TimeZoneID": "W. Europe Standard Time",
+    "LeagueId": 4362,
+    "LeagueName": "1. Fußball-Bundesliga 2019/2020",
+    "MatchDateTimeUTC": "2019-08-18T13:30:00Z",
+    "Group": {
+      "GroupName": "1. Spieltag",
+      "GroupOrderID": 1,
+      "GroupID": 34200
+    },
+    "Team1": {
+      "TeamId": 91,
+      "TeamName": "Eintracht Frankfurt",
+      "ShortName": "Frankfurt",
+      "TeamIconUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Eintracht_Frankfurt_Logo.svg/1024px-Eintracht_Frankfurt_Logo.svg.png",
+      "TeamGroupName": null
+    },
+    "Team2": {
+      "TeamId": 123,
+      "TeamName": "TSG 1899 Hoffenheim",
+      "ShortName": "Hoffenheim",
+      "TeamIconUrl": "https://upload.wikimedia.org/wikipedia/commons/6/64/TSG_Logo-Standard_4c.png",
+      "TeamGroupName": null
+    },
+    "LastUpdateDateTime": "2019-08-18T17:25:18.5",
+    "MatchIsFinished": true,
+    "MatchResults": [
+      {
+        "ResultID": 89362,
+        "ResultName": "Endergebnis",
+        "PointsTeam1": 1,
+        "PointsTeam2": 0,
+        "ResultOrderID": 2,
+        "ResultTypeID": 2,
+        "ResultDescription": "Ergebnis nach Ende der offiziellen Spielzeit"
+      },
+      {
+        "ResultID": 89363,
+        "ResultName": "Halbzeit",
+        "PointsTeam1": 1,
+        "PointsTeam2": 0,
+        "ResultOrderID": 1,
+        "ResultTypeID": 1,
+        "ResultDescription": "Zwischenstand zur Halbzeit"
+      }
+    ],
+    "Goals": [
+      {
+        "GoalID": 80299,
+        "ScoreTeam1": 1,
+        "ScoreTeam2": 0,
+        "MatchMinute": 1,
+        "GoalGetterID": 15641,
+        "GoalGetterName": "Hinteregger",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      }
+    ],
+    "Location": null,
+    "NumberOfViewers": null
+  },
+  {
+    "MatchID": 55285,
+    "MatchDateTime": "2019-08-18T18:00:00",
+    "TimeZoneID": "W. Europe Standard Time",
+    "LeagueId": 4362,
+    "LeagueName": "1. Fußball-Bundesliga 2019/2020",
+    "MatchDateTimeUTC": "2019-08-18T16:00:00Z",
+    "Group": {
+      "GroupName": "1. Spieltag",
+      "GroupOrderID": 1,
+      "GroupID": 34200
+    },
+    "Team1": {
+      "TeamId": 80,
+      "TeamName": "1. FC Union Berlin",
+      "ShortName": "Union Berlin",
+      "TeamIconUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/1._FC_Union_Berlin_1966_-_1990.gif/320px-1._FC_Union_Berlin_1966_-_1990.gif",
+      "TeamGroupName": null
+    },
+    "Team2": {
+      "TeamId": 1635,
+      "TeamName": "RB Leipzig",
+      "ShortName": "RBL",
+      "TeamIconUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/0/04/RB_Leipzig_2014_logo.svg/800px-RB_Leipzig_2014_logo.svg.png",
+      "TeamGroupName": null
+    },
+    "LastUpdateDateTime": "2019-08-18T19:49:04.303",
+    "MatchIsFinished": true,
+    "MatchResults": [
+      {
+        "ResultID": 89368,
+        "ResultName": "Endergebnis",
+        "PointsTeam1": 0,
+        "PointsTeam2": 4,
+        "ResultOrderID": 2,
+        "ResultTypeID": 2,
+        "ResultDescription": "Ergebnis nach Ende der offiziellen Spielzeit"
+      },
+      {
+        "ResultID": 89369,
+        "ResultName": "Halbzeit",
+        "PointsTeam1": 0,
+        "PointsTeam2": 3,
+        "ResultOrderID": 1,
+        "ResultTypeID": 1,
+        "ResultDescription": "Zwischenstand zur Halbzeit"
+      }
+    ],
+    "Goals": [
+      {
+        "GoalID": 80309,
+        "ScoreTeam1": 0,
+        "ScoreTeam2": 1,
+        "MatchMinute": 16,
+        "GoalGetterID": 6761,
+        "GoalGetterName": "Halstenberg",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      },
+      {
+        "GoalID": 80311,
+        "ScoreTeam1": 0,
+        "ScoreTeam2": 2,
+        "MatchMinute": 31,
+        "GoalGetterID": 16044,
+        "GoalGetterName": "Marcel Sabitzer",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      },
+      {
+        "GoalID": 80312,
+        "ScoreTeam1": 0,
+        "ScoreTeam2": 3,
+        "MatchMinute": 42,
+        "GoalGetterID": 16080,
+        "GoalGetterName": "Timo Werner",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      },
+      {
+        "GoalID": 80313,
+        "ScoreTeam1": 0,
+        "ScoreTeam2": 4,
+        "MatchMinute": 69,
+        "GoalGetterID": 17734,
+        "GoalGetterName": "Nkunku, C.",
+        "IsPenalty": false,
+        "IsOwnGoal": false,
+        "IsOvertime": false,
+        "Comment": null
+      }
+    ],
+    "Location": null,
+    "NumberOfViewers": null
+  }
+]
