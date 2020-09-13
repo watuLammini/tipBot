@@ -1,6 +1,9 @@
+{-# LANGUAGE TemplateHaskell #-}
 module Types where
 
 import qualified Data.Map.Strict as Map
+import Control.Lens
+import Control.Lens.TH
 --import qualified Data.Vector as V
 --import qualified Statistics.Distribution.Normal as Nor
 
@@ -10,10 +13,18 @@ data Team = Team {
   points2018 :: Int
   } deriving Show
 
-data TeamNew = TeamNew {
-  nameNew :: String,
-  points :: Map.Map Int Int
+data LTeam = LTeam {
+  _lname :: String,
+  _lpoints2019 :: Int,
+  _lpoints2018 :: Int
   } deriving Show
+
+makeLenses ''LTeam
+
+--data TeamNew = TeamNew {
+--  nameNew :: String,
+--  points :: Map.Map Int Int
+--  } deriving Show
 
 data Game = Game {
   gameID :: Int,

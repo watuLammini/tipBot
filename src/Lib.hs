@@ -9,9 +9,6 @@ import Types
 import Data
 import qualified Data.Map as Map
 
-someFunc :: IO ()
-someFunc = putStrLn "someFunc"
-
 getCategorialProb :: Double -> Double -> Double
 getCategorialProb numberOfUnion totalNumber = numberOfUnion / totalNumber
 
@@ -43,7 +40,7 @@ stan2018 = getStan allPoints2018
 
 -- Vorläufige Berechnung
 testProb01 = (getNormProbSample (fromIntegral $ points2019 bayern) probPoints01)
-             * (dummyResultProbs Map.! "1:0")
+             * (dummyResultProbs Map.! "0:1")
            where bayern = getTeams dummyTeams Map.! "FC Bayern"
                  probPoints01 = map fromIntegral $ map points2019 (dummyResults'''' Map.! "0:1")
 -- TODO: Fehlerbehandlung!

@@ -29,6 +29,7 @@ dependencies:
 - bytestring
 - vector
 - transformers
+- lens
 
 library:
   source-dirs: src
@@ -47,6 +48,7 @@ executables:
     - OverloadedStrings
     - DeriveGeneric
     - RecordWildCards
+    - TemplateHaskell
 
 tests:
   tipBot-test:
@@ -62,3 +64,4 @@ tests:
     - OverloadedStrings
     - DeriveGeneric
     - RecordWildCards
+    - TemplateHaskell

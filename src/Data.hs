@@ -1,3 +1,5 @@
+{-# LANGUAGE RecordWildCards #-}
+{-# LANGUAGE OverloadedStrings #-}
 module Data where
 
 import Types
@@ -220,7 +222,8 @@ dummyTeams = Teams $ Map.insert (name dortmund) dortmund .
 dummyResultProbs = Map.insert "1:1" 0.1173 .
                    Map.insert "2:1" 0.0879 .
                    Map.insert "1:0" 0.0813 .
-                   Map.insert "2:0" 0.0794 $ Map.empty
+                   Map.insert "2:0" 0.0794 .
+                   Map.insert "0:1" 0.0578 $ Map.empty
 
 dummyResults = map getData (Map.elems dummyGames)
                  where getData game = (getResult game, team1 game)
@@ -241,7 +244,3 @@ dummyResults'''' = Map.foldr (\game map -> Map.insertWith (\new old -> new ++ ol
 
 -- DEBUG
 lookMeUp = case (Map.lookup "FC Bayern" (getTeams dummyTeams)) of Just team -> name team
-
--- Haut nicht hin :'(
--- points2019V = V.fromList $ (Prelude.map fromIntegral (Map.elems $ Map.map points2019 testMap) :: [Double])
--- normDistr = Distr.fromSample points2019V
