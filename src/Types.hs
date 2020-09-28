@@ -19,9 +19,12 @@ data LTeam = LTeam {
   _lpoints2018 :: Int
   } deriving Show
 
-makeLenses ''LTeam
+data LTeam' = LTeam' {
+  _lname' :: String,
+  _lpoints' :: Map.Map Int Int
+  } deriving Show
 
---data TeamNew = TeamNew {
+--data TeamNew = TeamNew {t
 --  nameNew :: String,
 --  points :: Map.Map Int Int
 --  } deriving Show
@@ -47,12 +50,21 @@ data Game' = Game' {
 } deriving Show
 
 newtype Teams = Teams { getTeams :: Map.Map String Team } deriving Show
+newtype LTeams = LTeams { _getLTeams :: Map.Map String LTeam } deriving Show
 newtype Games = Games { getGames :: Map.Map String Game } deriving Show
 newtype Games' = Games' { getGames' :: Map.Map String Game' } deriving Show
+newtype LTeams' = LTeams' { _getLTeams' :: Map.Map String LTeam' } deriving Show
 
+makeLenses ''LTeam
+makeLenses ''LTeam'
+makeLenses ''LTeams
+makeLenses ''LTeams'
 
 getResult :: Game -> String
 getResult Game { goalsT1=goalsT1, goalsT2=goalsT2 } = show goalsT1 ++ ":" ++ show goalsT2
+
+getResult' :: Game' -> String
+getResult' Game' { goalsT1'=goalsT1', goalsT2'=goalsT2' } = show goalsT1' ++ ":" ++ show goalsT2'
 
 getPoints :: Game -> Int
 getPoints Game { goalsT1=goalsT1, goalsT2=goalsT2 }
