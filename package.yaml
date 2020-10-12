@@ -30,6 +30,7 @@ dependencies:
 - vector
 - transformers
 - lens
+- req
 
 library:
   source-dirs: src
@@ -49,6 +50,7 @@ executables:
     - DeriveGeneric
     - RecordWildCards
     - TemplateHaskell
+    - ScopedTypeVariables
 
 tests:
   tipBot-test:

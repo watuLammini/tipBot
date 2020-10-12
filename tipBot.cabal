@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: bd48a433d2cce7a64e9cb0afb49884b61fd556f66b769067fce7e53e78fa0796
+-- hash: 59a69190a35747b7242ad9b0fc5a92aeb8ca62d328093fb88ac7d005f846704b
 
 name:           tipBot
 version:        0.1.0.0
@@ -40,6 +40,7 @@ library
     , bytestring
     , containers
     , lens
+    , req
     , text
     , transformers
     , unordered-containers
@@ -52,7 +53,7 @@ executable tipBot-exe
       Paths_tipBot
   hs-source-dirs:
       app
-  default-extensions: OverloadedStrings DeriveGeneric RecordWildCards TemplateHaskell
+  default-extensions: OverloadedStrings DeriveGeneric RecordWildCards TemplateHaskell ScopedTypeVariables
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson
@@ -60,6 +61,7 @@ executable tipBot-exe
     , bytestring
     , containers
     , lens
+    , req
     , text
     , tipBot
     , transformers
@@ -82,6 +84,7 @@ test-suite tipBot-test
     , bytestring
     , containers
     , lens
+    , req
     , text
     , tipBot
     , transformers

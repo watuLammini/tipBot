@@ -24,11 +24,6 @@ data LTeam' = LTeam' {
   _lpoints' :: Map.Map Int Int
   } deriving Show
 
---data TeamNew = TeamNew {t
---  nameNew :: String,
---  points :: Map.Map Int Int
---  } deriving Show
-
 data Game = Game {
   gameID :: Int,
   team1 :: Team,

@@ -6,16 +6,21 @@ import Types
 import qualified Data.Map.Strict as Map
 import Data.Aeson
 import Data.Maybe
+import Data.Either
 import Data.Aeson.Types as AT
 import qualified Data.Vector as V
 import GHC.Generics
 import Control.Applicative
 import qualified Data.Text as Text
 import qualified Data.ByteString.Lazy as B
+import qualified Data.ByteString.Char8 as BCh8
 import qualified Data.HashMap.Strict as HM
 import Control.Monad.IO.Class
 import Control.Monad.Trans.Class
 import Control.Lens
+import Network.HTTP.Req
+--import qualified Text.URI as URI
+import Debug.Trace
 
 -- Lens Part
 
@@ -39,18 +44,12 @@ decodeLTeams = do
   object2018 <- decodeLJSON 2018
   object2019 <- decodeLJSON 2019
   let insertUpdate newTeam = set lpoints2018 (view lpoints2019 newTeam)
---  t2018 <- object2018
---  t2019 <- object2019
---  let t2018 = object2018 >>= getTeams
---  let t2019 = object2019 >>= getTeams
   let t2018 = case object2018 of
                 Left error -> LTeams { _getLTeams = Map.empty }
                 Right teams -> teams
   let t2019 = case object2019 of
                 Left error -> LTeams { _getLTeams = Map.empty }
                 Right teams -> teams
---  let result = Map.foldr (\team theMap -> Map.insertWith insertUpdate (_lname team) team theMap)
---                 (_getLTeams t2019) (_getLTeams t2018)
 -- With help from https://www.reddit.com/r/haskell/comments/7l0qzb/hashmap_insertwith_lens_equivalent/
   let result = Map.foldr (\team map -> over (at (_lname team)) (Just . maybe team (insertUpdate team)) map)
                  (_getLTeams t2019) (_getLTeams t2018)
@@ -90,7 +89,7 @@ decodeLTeams' year = do
                 Left error -> LTeams' { _getLTeams' = Map.empty }
                 Right teams -> teams
 -- With help from https://www.reddit.com/r/haskell/comments/7l0qzb/hashmap_insertwith_lens_equivalent/
---  let result = Map.foldr (\team map -> over (at (_lname team)) (Just . maybe team (insertUpdate team)) map)
+-- let result = Map.foldr (\team map -> over (at (_lname team)) (Just . maybe team (insertUpdate team)) map)
 --                 (_getLTeams t2019) (_getLTeams t2018)
   return decoded
 
@@ -105,7 +104,7 @@ decodeLJSON' year = do
                     Right value -> value
   return (parseEither parseJSON jsonValue :: Either String LTeams')
 
---decodeAllLTeams' :: IO LTeams'
+decodeAllLTeams' :: IO LTeams'
 decodeAllLTeams' = do
     let years = [2018..2019]
     decodedList <- mapM decodeLTeams' years
@@ -113,14 +112,50 @@ decodeAllLTeams' = do
     let changeLP year lp = Map.insert year (fromMaybe (-1) (view (at 0) lp)) (Map.delete 0 (lp))
     let updateTeams year Nothing = Nothing
         updateTeams year (Just teams) = Just $ LTeams' $ Map.map
-                                          (\team -> team { _lpoints' = (changeLP year (_lpoints' team))})
-                                          (_getLTeams' teams)
+                                        (\team -> team { _lpoints' = (changeLP year (_lpoints' team))})
+                                        (_getLTeams' teams)
     let updateTeams' year teams = Map.map (\team -> set lpoints' (changeLP year (view lpoints' team)) team)
                                   (_getLTeams' teams)
     let betterMap = over (at 2018) (updateTeams 2018) decodedMap
     let bettererMap = Map.mapWithKey updateTeams' decodedMap
-    let muchBetterMap = Map.foldr (\newTeams oldTeams -> Map.insert newTeams)
-    return bettererMap
+--    let joinMaps teams newMap = Map.insertWith (\newTeam oldTeam -> oldTeam { _lpoints' =
+--                                union (_lpoints' oldTeam) (_lpoints' newTeam)}) (_lname' )
+--    let muchBetterMap = Map.foldr joinMaps Map.empty bettererMap
+    let muchBetterMap = Map.unionsWith
+                        (\t1 t2 -> t1 { _lpoints' = Map.union (_lpoints' t1) (_lpoints' t2) })
+                        (Map.elems bettererMap)
+    return $ LTeams' muchBetterMap
+
+--getApi :: IO (Either String Value)
+--getApi :: IO ()
+getApi :: IO (LTeams')
+getApi = runReq defaultHttpConfig $ do
+--  bs <- req GET (https "www.openligadb.de" /: "api" /: "getbltable" /: "bl1" /: "2019") NoReqBody bsResponse mempty
+  js {-:: JsonResponse Value-} <- req GET (https "www.openligadb.de" /: "api" /: "getbltable" /: "bl1" /: "2019") NoReqBody jsonResponse
+    mempty
+  let jsValue :: Value
+      jsValue = responseBody js
+--      debug = traceShow jsValue "hi"
+--  return $! debug
+--  let json = responseBody bs :: BCh8.ByteString
+--  let jsonGood = B.fromStrict json
+--  body <- responseBody bs
+--  bs <- req GET (https "httpbin.org" /: "get") NoReqBody bsResponse mempty
+--  let jsonEitherValue = eitherDecode jsonGood :: Either String Value
+--  let parsed = parseEither parseJSON jsonEitherValue :: Either String LTeams'
+--  liftIO $ BCh8.putStrLn (responseBody bs)
+--  return jsonEitherValue
+--  liftIO $ putStrLn "asdf"
+  let resultEither = parseEither parseJSON jsValue :: Either String LTeams'
+      result = case resultEither of
+        Left error -> LTeams' Map.empty
+        Right teams -> teams
+  if isLeft resultEither
+    then liftIO $ putStrLn (fromLeft "" resultEither)
+    else return ()
+--  let result = eitherDecode jsValue
+  return result
+
 -- Some demo code for myself
 --t1 = LTeam "fcb" 1 2
 --t2 = LTeam "freunde" 3 4
@@ -134,14 +169,6 @@ decodeAllLTeams' = do
 -- End Lens Part
 
 
---newtype ParserT m a = ParserT { runParserT :: Parser (m a) }
---
---instance (Monad m) => Monad (ParserT m) where
---    return = lift . return
---    x >>= f = ParserT $ do
---        v <- runParserT x
---        return (runParserT (ParserT v))
-
 instance FromJSON Teams where
   parseJSON = withArray "Teams" $ \array -> do
     parsedArray <- V.mapM parseTeam array
@@ -152,7 +179,6 @@ instance FromJSON Teams where
 instance FromJSON Games' where
   parseJSON = withArray "Games'" $ \array -> do
     parsedArray <- V.mapM parseGame' array
---    let insertUpdate newTeam oldTeam = oldTeam { points2018=666 }
     let parsedMap = V.foldr (\game theMap -> Map.insert (show (gameID' game)) game theMap) Map.empty parsedArray
     return $ Games' parsedMap
 
@@ -180,31 +206,7 @@ parseGame' = withObject "Game" (\o -> do
                return (pointsTeam1, pointsTeam2)) resultsObject
   let spieltag' = 1
   let saison' = 2019
---  goalsT2' <-
---      withObject "resultsObject"
---        (\o -> do
---                 pointsTeam2 <- o .: "PointsTeam2" :: Parser Int
---                 return pointsTeam1) resultsObject
---  goalsT2' <- (V.head results) .: "PointsTeam2"
   return Game' {..})
-
---instance FromJSON Games where
---  parseJSON = withArray "Games" $ \array -> do
---    parsedArray <- V.mapM parseGame array
-----    let insertUpdate newTeam oldTeam = oldTeam { points2018=666 }
---    let parsedMap = V.foldr (\game theMap -> Map.insert (show (gameID game)) game theMap) Map.empty parsedArray
---    return $ Games parsedMap
-
---parseGame :: Value -> Parser Game
---parseGame = withObject "Game" (\o -> do
---  gameID <- o .: "MatchID" :: Parser String
---  team1Object <- (o .: "Team1") :: Parser Object
---  team1Name <- team1Object .: "TeamName" :: Parser String
---  teams <- decodeJSONs
---  let team = teams Map.! team1Name
-----  team1 <- ((Map.!) team1Name') =<< (getTeams decodeJSONs)
-----  team2 <- o .: "Team2" :: Parser String
---  return Game { gameID = 99999 })
 
 jsonPath :: Int -> FilePath
 jsonPath year =  "src/data/table" ++ (show year) ++ ".json"
@@ -228,10 +230,6 @@ decodeTeams = do
   object2018 <- decodeJSON 2018
   object2019 <- decodeJSON 2019
   let insertUpdate newTeam oldTeam = oldTeam { points2018 = (points2019 newTeam) }
---  t2018 <- object2018
---  t2019 <- object2019
---  let t2018 = object2018 >>= getTeams
---  let t2019 = object2019 >>= getTeams
   let t2018 = case object2018 of
                 Left error -> Teams { getTeams = Map.empty }
                 Right teams -> teams
@@ -240,8 +238,6 @@ decodeTeams = do
                 Right teams -> teams
   let result = Map.foldr (\team theMap -> Map.insertWith insertUpdate (name team) team theMap)
                  (getTeams t2019) (getTeams t2018)
---  result <- (object2018 >>= (\o18 -> object2019 >>= (\o19 -> Map.foldr (\team theMap -> Map.insertWith insertUpdate
---                                                             (name team) team theMap) o18 o19)))
   return $ Teams result
 
 jsonGamePath :: FilePath
@@ -384,6 +380,3 @@ dummyResults''''' = do
   let result = Map.foldr (\game map -> Map.insertWith (\new old -> new ++ old)
                            (getResult' game) [(team1' game)] map) Map.empty (getGames' games)
   return result
-
--- DEBUG
-lookMeUp = case (Map.lookup "FC Bayern" (getTeams dummyTeams)) of Just team -> name team
