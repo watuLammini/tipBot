@@ -44,16 +44,29 @@ data Game' = Game' {
   saison' :: Int
 } deriving Show
 
+data LGame = LGame {
+  _lgameID :: Int,
+  _lteam1 :: String,
+  _lteam2 :: String,
+  _lgoalsT1 :: Int,
+  _lgoalsT2 :: Int,
+  _lspieltag :: Int,
+  _lsaison :: Int
+} deriving Show
+
 newtype Teams = Teams { getTeams :: Map.Map String Team } deriving Show
 newtype LTeams = LTeams { _getLTeams :: Map.Map String LTeam } deriving Show
 newtype Games = Games { getGames :: Map.Map String Game } deriving Show
 newtype Games' = Games' { getGames' :: Map.Map String Game' } deriving Show
+newtype LGames = LGames { _getLGames :: Map.Map String LGame } deriving Show
 newtype LTeams' = LTeams' { _getLTeams' :: Map.Map String LTeam' } deriving Show
 
 makeLenses ''LTeam
 makeLenses ''LTeam'
 makeLenses ''LTeams
 makeLenses ''LTeams'
+makeLenses ''LGame
+makeLenses ''LGames
 
 getResult :: Game -> String
 getResult Game { goalsT1=goalsT1, goalsT2=goalsT2 } = show goalsT1 ++ ":" ++ show goalsT2

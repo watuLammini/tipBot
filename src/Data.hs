@@ -110,42 +110,38 @@ decodeAllLTeams' = do
     decodedList <- mapM decodeLTeams' years
     let decodedMap = Map.fromList (zip years decodedList)
     let changeLP year lp = Map.insert year (fromMaybe (-1) (view (at 0) lp)) (Map.delete 0 (lp))
-    let updateTeams year Nothing = Nothing
-        updateTeams year (Just teams) = Just $ LTeams' $ Map.map
-                                        (\team -> team { _lpoints' = (changeLP year (_lpoints' team))})
-                                        (_getLTeams' teams)
-    let updateTeams' year teams = Map.map (\team -> set lpoints' (changeLP year (view lpoints' team)) team)
+    let updateTeams year teams = Map.map (\team -> set lpoints' (changeLP year (view lpoints' team)) team)
                                   (_getLTeams' teams)
-    let betterMap = over (at 2018) (updateTeams 2018) decodedMap
-    let bettererMap = Map.mapWithKey updateTeams' decodedMap
---    let joinMaps teams newMap = Map.insertWith (\newTeam oldTeam -> oldTeam { _lpoints' =
---                                union (_lpoints' oldTeam) (_lpoints' newTeam)}) (_lname' )
---    let muchBetterMap = Map.foldr joinMaps Map.empty bettererMap
-    let muchBetterMap = Map.unionsWith
+    let updatedMap = Map.mapWithKey updateTeams decodedMap
+    let unitedMap = Map.unionsWith
                         (\t1 t2 -> t1 { _lpoints' = Map.union (_lpoints' t1) (_lpoints' t2) })
-                        (Map.elems bettererMap)
-    return $ LTeams' muchBetterMap
+                        (Map.elems updatedMap)
+    return $ LTeams' unitedMap
 
---getApi :: IO (Either String Value)
---getApi :: IO ()
-getApi :: IO (LTeams')
-getApi = runReq defaultHttpConfig $ do
---  bs <- req GET (https "www.openligadb.de" /: "api" /: "getbltable" /: "bl1" /: "2019") NoReqBody bsResponse mempty
-  js {-:: JsonResponse Value-} <- req GET (https "www.openligadb.de" /: "api" /: "getbltable" /: "bl1" /: "2019") NoReqBody jsonResponse
+getAllLTeams' :: (Int -> IO LTeams') -> [Int] -> IO LTeams'
+getAllLTeams' getFunction years = do
+    decodedList <- mapM getFunction years
+    let decodedMap = Map.fromList (zip years decodedList)
+    let changeLP year lp = Map.insert year (fromMaybe (-1) (view (at 0) lp)) (Map.delete 0 (lp))
+    let updateTeams year teams = Map.map (\team -> set lpoints' (changeLP year (view lpoints' team)) team)
+                                  (_getLTeams' teams)
+    let updatedMap = Map.mapWithKey updateTeams decodedMap
+    let unitedMap = Map.unionsWith
+                        (\t1 t2 -> t1 { _lpoints' = Map.union (_lpoints' t1) (_lpoints' t2) })
+                        (Map.elems updatedMap)
+    return $ LTeams' unitedMap
+
+finalTeams :: IO LTeams'
+finalTeams = do
+  result <- getAllLTeams' getTeamsApi [2016..2019]
+  return result
+
+getTeamsApi :: Int -> IO LTeams'
+getTeamsApi year = runReq defaultHttpConfig $ do
+  js <- req GET (https "www.openligadb.de" /: "api" /: "getbltable" /: "bl1" /~ year) NoReqBody jsonResponse
     mempty
   let jsValue :: Value
       jsValue = responseBody js
---      debug = traceShow jsValue "hi"
---  return $! debug
---  let json = responseBody bs :: BCh8.ByteString
---  let jsonGood = B.fromStrict json
---  body <- responseBody bs
---  bs <- req GET (https "httpbin.org" /: "get") NoReqBody bsResponse mempty
---  let jsonEitherValue = eitherDecode jsonGood :: Either String Value
---  let parsed = parseEither parseJSON jsonEitherValue :: Either String LTeams'
---  liftIO $ BCh8.putStrLn (responseBody bs)
---  return jsonEitherValue
---  liftIO $ putStrLn "asdf"
   let resultEither = parseEither parseJSON jsValue :: Either String LTeams'
       result = case resultEither of
         Left error -> LTeams' Map.empty
@@ -153,8 +149,68 @@ getApi = runReq defaultHttpConfig $ do
   if isLeft resultEither
     then liftIO $ putStrLn (fromLeft "" resultEither)
     else return ()
---  let result = eitherDecode jsValue
   return result
+
+instance FromJSON LGames where
+  parseJSON = withArray "LGames'" $ \array -> do
+    parsedArray <- V.mapM parseLGame array
+    let parsedMap = V.foldr (\game theMap -> Map.insert (show (view lgameID game)) game theMap) Map.empty parsedArray
+    return $ LGames parsedMap
+
+parseLGame :: Value -> Parser LGame
+parseLGame = withObject "LGame" (\o -> do
+  _lgameID <-  o .: "MatchID" :: Parser Int
+  team1Object <- (o .: "Team1") :: Parser Object
+  _lteam1 <- team1Object .: "TeamName" :: Parser String
+  team2Object <- o .: "Team2" :: Parser Object
+  _lteam2 <- team2Object .: "TeamName" :: Parser String
+  results <- o .: "MatchResults" :: Parser Array
+  let resultsObject = V.head results
+  (_lgoalsT1, _lgoalsT2) <-
+    withObject "resultsObject"
+      (\o -> do
+               pointsTeam1 <- o .: "PointsTeam1" :: Parser Int
+               pointsTeam2 <- o .: "PointsTeam2" :: Parser Int
+               return (pointsTeam1, pointsTeam2)) resultsObject
+  _lspieltag <- o .: "Spieltag" :: Parser Int
+  let _lsaison = 2019
+  return LGame {..})
+
+getGamesApi :: Int -> Int -> IO [LGames]
+getGamesApi year day = runReq defaultHttpConfig $ do
+  js <- req GET (https "www.openligadb.de" /: "api" /: "getmatchdata" /: "bl1" /~ year /~ day) NoReqBody jsonResponse
+    mempty
+  let jsValue :: Value
+      jsValue = responseBody js
+  let tempResult = case jsValue of
+                      (Array arr) -> arr
+                      _ -> V.empty
+  let insertSpieltag team = HM.insert "Spieltag" (Text.pack $ show day) team :: HM.HashMap Text.Text Text.Text
+  let insertSaison saison = HM.insert "Saison" (Text.pack $ show year) saison
+  let updatedVector = V.mapM parseJSON tempResult :: Parser (V.Vector (HM.HashMap Text.Text Text.Text))
+  let parsed = parseEither (V.mapM parseJSON) tempResult :: Either String (V.Vector LGames)
+  let finalVector = do
+      realVector <- updatedVector
+--      let updatedVector2 = AT.Array realVector
+      let insertedVector = V.map insertSpieltag realVector
+--      let resultEither = parseEither parseJSON insertedVector :: Either String LGames
+--          result = case resultEither of
+--            Left error -> LGames Map.empty
+--            Right teams -> teams
+--      if isLeft resultEither
+--          then putStrLn (fromLeft "" resultEither)
+--          else return ()
+      return realVector
+--  let resultEither = finalVector >>= (\x -> parseEither parseJSON x) :: Either String LGames
+--  let resultEither = parseEither parseJSON finalVector :: Either String LGames
+--      result = case resultEither of
+--        Left error -> LGames Map.empty
+--        Right teams -> teams
+--  if isLeft resultEither
+--    then liftIO $ putStrLn (fromLeft "" resultEither)
+--    else return ()
+  let doubleParsedResult = parseEither (\_ -> finalVector)
+  return $ [LGames Map.empty]
 
 -- Some demo code for myself
 --t1 = LTeam "fcb" 1 2
@@ -166,6 +222,13 @@ getApi = runReq defaultHttpConfig $ do
 --set (at "Test") (Just t2) (_getLTeams lt)
 --over (at "Test") (const $ Just t2) (_getLTeams lt)
 --over (at "Test") (\t1 -> case t1 of (Just tt1) -> Just $ tt1 { _lpoints2019 = 66 }; Nothing -> Just t2) (_getLTeams lt)
+
+viewTestTeam = do
+  teams <- finalTeams
+  let fcb = fromMaybe (LTeam' "" Map.empty) $ view (at "FC Bayern") (_getLTeams' teams)
+--  let result = view lpoints' fcb
+  let result = (view (at "FC Bayern") (_getLTeams' teams)) >>= (\x -> Just $ view lpoints' x)
+  return result
 -- End Lens Part
 
 
