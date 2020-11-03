@@ -45,4 +45,3 @@ testProb01 =   (getNormProbSample (fromIntegral $ points2019 bayern) probPoints2
            where bayern = getTeams dummyTeams Map.! "FC Bayern"
                  probPoints201901 = map fromIntegral $ map points2019 (dummyResults'''' Map.! "0:1")
                  probPoints201801 = map fromIntegral $ map points2018 (dummyResults'''' Map.! "0:1")
--- TODO: Fehlerbehandlung!

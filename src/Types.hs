@@ -74,6 +74,9 @@ getResult Game { goalsT1=goalsT1, goalsT2=goalsT2 } = show goalsT1 ++ ":" ++ sho
 getResult' :: Game' -> String
 getResult' Game' { goalsT1'=goalsT1', goalsT2'=goalsT2' } = show goalsT1' ++ ":" ++ show goalsT2'
 
+getLResult :: LGame -> String
+getLResult LGame { _lgoalsT1=_lgoalsT1, _lgoalsT2=_lgoalsT2 } = show _lgoalsT1 ++ ":" ++ show _lgoalsT2
+
 getPoints :: Game -> Int
 getPoints Game { goalsT1=goalsT1, goalsT2=goalsT2 }
   | goalsT1 > goalsT2 = 3
