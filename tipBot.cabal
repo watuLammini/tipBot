@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 59a69190a35747b7242ad9b0fc5a92aeb8ca62d328093fb88ac7d005f846704b
+-- hash: 9d7d56424e6391ec3a4e2dd8e72321da49458cb372ea4b49eb142a8522db7b9f
 
 name:           tipBot
 version:        0.1.0.0
@@ -40,6 +40,7 @@ library
     , bytestring
     , containers
     , lens
+    , parallel
     , req
     , text
     , transformers
@@ -61,6 +62,7 @@ executable tipBot-exe
     , bytestring
     , containers
     , lens
+    , parallel
     , req
     , text
     , tipBot
@@ -84,6 +86,7 @@ test-suite tipBot-test
     , bytestring
     , containers
     , lens
+    , parallel
     , req
     , text
     , tipBot
