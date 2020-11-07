@@ -32,6 +32,7 @@ dependencies:
 - lens
 - req
 - parallel
+- pretty-simple
 
 library:
   source-dirs: src

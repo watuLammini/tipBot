@@ -32,8 +32,8 @@ getStan xs = sqrt (totalSum / (fromIntegral $ length xs))
              quadrSum = map (^2) innerSum
              totalSum = foldr (+) 0 $ quadrSum
 
-allPoints2019 = map fromIntegral $ map points2019 $ Map.elems $ getTeams dummyTeams :: [Double]
-allPoints2018 = map fromIntegral $ map points2018 $ Map.elems $ getTeams dummyTeams :: [Double]
+allPoints2019 = map fromIntegral $ map points2019 $ Map.elems $ getTeamsOld dummyTeams :: [Double]
+allPoints2018 = map fromIntegral $ map points2018 $ Map.elems $ getTeamsOld dummyTeams :: [Double]
 mean2019 = getMean allPoints2019
 mean2018 = getMean allPoints2018
 stan2019 = getStan allPoints2019
@@ -43,13 +43,13 @@ stan2018 = getStan allPoints2018
 testProb =   (getNormProbSample (fromIntegral $ points2019 bayern) probPoints201901)
              * (getNormProbSample (fromIntegral $ points2018 bayern) probPoints201801)
              * (dummyResultProbs Map.! "0:1")
-           where bayern = getTeams dummyTeams Map.! "FC Bayern"
+           where bayern = getTeamsOld dummyTeams Map.! "FC Bayern"
                  probPoints201901 = map fromIntegral $ map points2019 (dummyResults'''' Map.! "0:1")
                  probPoints201801 = map fromIntegral $ map points2018 (dummyResults'''' Map.! "0:1")
 
 testProbPar :: IO ()
 testProbPar = do
-  let bayern = getTeams dummyTeams Map.! "FC Bayern"
+  let bayern = getTeamsOld dummyTeams Map.! "FC Bayern"
   let probPoints201901 = map fromIntegral $ map points2019 (dummyResults'''' Map.! "0:1")
   let probPoints201801 = map fromIntegral $ map points2018 (dummyResults'''' Map.! "0:1")
   let pPointsCondResult19 = (getNormProbSample (fromIntegral $ points2019 bayern) probPoints201901)

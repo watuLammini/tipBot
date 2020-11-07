@@ -4,11 +4,10 @@ module Types where
 import qualified Data.Map.Strict as Map
 import Control.Lens
 import Control.Lens.TH
---import qualified Data.Vector as V
---import qualified Statistics.Distribution.Normal as Nor
+import qualified Data.Vector as V
 
-data Team = Team {
-  name :: String,
+data TeamOld = TeamOld {
+  nameOld :: String,
   points2019 :: Int,
   points2018 :: Int
   } deriving Show
@@ -19,15 +18,15 @@ data LTeam = LTeam {
   _lpoints2018 :: Int
   } deriving Show
 
-data LTeam' = LTeam' {
-  _lname' :: String,
-  _lpoints' :: Map.Map Int Int
+data Team = Team {
+  name :: String,
+  _points :: Map.Map Int Int
   } deriving Show
 
 data Game = Game {
   gameID :: Int,
-  team1 :: Team,
-  team2 :: Team,
+  team1 :: TeamOld,
+  team2 :: TeamOld,
   goalsT1 :: Int,
   goalsT2 :: Int,
   spieltag :: Int,
@@ -54,17 +53,17 @@ data LGame = LGame {
   _lsaison :: Int
 } deriving Show
 
-newtype Teams = Teams { getTeams :: Map.Map String Team } deriving Show
+newtype TeamsOld = TeamsOld { getTeamsOld :: Map.Map String TeamOld } deriving Show
 newtype LTeams = LTeams { _getLTeams :: Map.Map String LTeam } deriving Show
 newtype Games = Games { getGames :: Map.Map String Game } deriving Show
 newtype Games' = Games' { getGames' :: Map.Map String Game' } deriving Show
 newtype LGames = LGames { _getLGames :: Map.Map String LGame } deriving Show
-newtype LTeams' = LTeams' { _getLTeams' :: Map.Map String LTeam' } deriving Show
+newtype Teams = Teams { _getTeams :: Map.Map String Team } deriving Show
 
 makeLenses ''LTeam
-makeLenses ''LTeam'
+makeLenses ''Team
 makeLenses ''LTeams
-makeLenses ''LTeams'
+makeLenses ''Teams
 makeLenses ''LGame
 makeLenses ''LGames
 

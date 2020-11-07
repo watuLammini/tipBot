@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 9d7d56424e6391ec3a4e2dd8e72321da49458cb372ea4b49eb142a8522db7b9f
+-- hash: 9edc3b88ce348f1c83d1f312e0e0e9bb87503f4af74d54b565e6eeb3b311cb23
 
 name:           tipBot
 version:        0.1.0.0
@@ -29,6 +29,7 @@ library
   exposed-modules:
       Data
       Lib
+      Teams
       Types
   other-modules:
       Paths_tipBot
@@ -41,6 +42,7 @@ library
     , containers
     , lens
     , parallel
+    , pretty-simple
     , req
     , text
     , transformers
@@ -63,6 +65,7 @@ executable tipBot-exe
     , containers
     , lens
     , parallel
+    , pretty-simple
     , req
     , text
     , tipBot
@@ -87,6 +90,7 @@ test-suite tipBot-test
     , containers
     , lens
     , parallel
+    , pretty-simple
     , req
     , text
     , tipBot
