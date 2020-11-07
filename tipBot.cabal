@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 9edc3b88ce348f1c83d1f312e0e0e9bb87503f4af74d54b565e6eeb3b311cb23
+-- hash: f3c61e5b9a156810917f118112f9c236380ab42f4edae9c3d8f6222bd40b7dfe
 
 name:           tipBot
 version:        0.1.0.0
@@ -28,6 +28,7 @@ source-repository head
 library
   exposed-modules:
       Data
+      Games
       Lib
       Teams
       Types
