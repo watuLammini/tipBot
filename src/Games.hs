@@ -114,8 +114,17 @@ finalGames saisons = do
       gamesUnited = LGames $ Map.unions gamesMap
   return gamesUnited
 
+results :: IO (Map.Map String (Map.Map String Int))
 results = do
   games <- finalGames [2018..2019]
-  let result = Map.foldr (\game map -> Map.insertWith (\new old -> new ++ old)
-                           (getLResult game) [(_lteam1 game)] map) Map.empty (_getLGames games)
+--  let result = Map.foldr (\game map -> Map.insertWith (\new old -> new ++ old)
+--                           (getLResult game) [(_lteam1 game)] map) Map.empty (_getLGames games)
+
+-- Variante mit Counter für die entsprechenden Ergebnisse
+                                       -- Füge das Resultat ein
+  let result = Map.foldr (\game map -> Map.insertWith
+                                               -- Füge ins Resultat die Anzahlen pro Team ein
+                           (\newMap oldMap -> Map.insertWith (\ _ oldCounter -> oldCounter + 1) (_lteam1 game) 1 oldMap)
+                           (getLResult game) (Map.fromList [((_lteam1 game),1)]) map)
+                           Map.empty (_getLGames games)
   return result

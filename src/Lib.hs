@@ -7,7 +7,9 @@ module Lib
 
 import Types
 import Data
+import Data.Maybe
 import qualified Data.Map as Map
+import Control.Lens
 import Control.Parallel
 
 getCategorialProb :: Double -> Double -> Double
@@ -59,3 +61,70 @@ testProbPar = do
                  `pseq` (pPointsCondResult19 * pPointsCondResult19 * pPoints)
   putStrLn $ show result
   return ()
+
+-- Give back all the probabilites for results
+--probabilitiesResults :: Map.Map String (Map.Map String Int) -> Int
+probabilitiesResults :: Map.Map String (Map.Map String Int) -> Map.Map String Double
+probabilitiesResults results =
+  Map.map (\noMatches -> (fromIntegral noMatches) / (fromIntegral total)) summedUp
+  where
+    summedUp = Map.map sumItUp results
+    sumItUp = Map.foldr (+) 0
+    total = Map.foldr (+) 0 summedUp
+--  Map.empty
+
+probsPointsCondResultsIt :: Map.Map String (Map.Map String Int) -> Teams -> Int -> Map.Map String [Int]
+probsPointsCondResultsIt results rawTeams saison =
+  pointsMap
+  where
+    teams = _getTeams rawTeams
+    pointsMap :: Map.Map String [Int]
+    pointsMap = Map.map generatePointsList results
+    generatePointsList :: Map.Map String Int -> [Int]
+    generatePointsList = Map.foldrWithKey gPLit []
+    gPLit teamName 1 list = (getPoints' teamName) : list
+    gPLit teamName counter list = (getPoints' teamName) : (gPLit teamName (counter-1) list)
+--    Take care, unsafe!
+    getPoints :: String -> Int
+--    getPoints teamName = (_points (teams Map.! teamName)) Map.! saison
+--    getPoints teamName = (view points (teams Map.! teamName)) Map.! saison
+    getPoints teamName = getPointsIt $ view (at teamName) teams
+    getPointsIt (Just team) = getPointsItIt (view points team)
+    getPointsIt Nothing = -99
+    getPointsItIt teamPoints = fromMaybe (-99) $ teamPoints Map.!? saison
+--    getPointsItIt teamPoints = fromMaybe (-99) (view (at saison) teamPoints
+    getPoints'
+
+
+probsPointsCondResults :: Map.Map String (Map.Map String Int) -> Teams -> Team -> Int -> Map.Map String Double
+probsPointsCondResults results rawTeams team saison =
+  Map.map (getNormProbSample (fromIntegral pointsTeam)) pointsMap
+  where
+    teams = _getTeams rawTeams
+    pointsMap = Map.map (map fromIntegral) $ probsPointsCondResultsIt results rawTeams saison
+    pointsTeam = view points team Map.! saison
+
+probsPointsCondResultsSaisons :: Map.Map String (Map.Map String Int) -> Teams -> Team -> [Int]
+                                   -> Map.Map Int (Map.Map String Double)
+probsPointsCondResultsSaisons results rawTeams team saisons =
+  saisonProbs
+  where
+    teams = _getTeams rawTeams
+    saisonProbs = Map.fromList $ zip saisons $
+                    map (probsPointsCondResults results rawTeams team) saisons
+
+--probResult :: Map.Map String (Map.Map String Int) -> Teams -> Team -> [Int] -> (String, Double)
+probResult results rawTeams team saisons =
+--  ("Test", 0.4)
+--  Map.unionWith (*) probsResults probsCondSaisonsUnited
+  probsCondSaisonsUnited
+  where
+   teams = _getTeams rawTeams
+   probsResults = probabilitiesResults results
+   probsCondSaisons = Map.elems $ probsPointsCondResultsSaisons results rawTeams team saisons
+   probsCondSaisonsUnited = Map.unionsWith (*) probsCondSaisons
+
+-- For testing:
+-- resultos <- results
+-- teams <- finalTeams
+-- fcb = (_getTeams teams) Map.! "FC Bayern"

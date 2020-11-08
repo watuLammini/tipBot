@@ -18,13 +18,13 @@ instance FromJSON Teams where
   parseJSON = withArray "Teams" $ \array -> do
     parsedArray <- V.mapM parseLTeam' array
     let insertUpdate newTeam oldTeam = oldTeam
-    let parsedMap = V.foldr (\team theMap -> Map.insertWith insertUpdate (name team) team theMap)
+    let parsedMap = V.foldr (\team theMap -> Map.insertWith insertUpdate (_name team) team theMap)
                               Map.empty parsedArray
     return $ Teams parsedMap
 
 parseLTeam' :: Value -> Parser Team
 parseLTeam' = withObject "LTeam'" (\o -> do
- name <- o .: "TeamName"
+ _name <- o .: "TeamName"
  _lpointsRaw' <- o .: "Points"
  let _points = Map.insert 0 _lpointsRaw' Map.empty
  return Team {..})

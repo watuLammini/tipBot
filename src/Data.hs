@@ -200,7 +200,6 @@ ldortmund = LTeam {
   _lpoints2018 = 76
 }
 
-
 hoffenheim = TeamOld {
   nameOld = "TSG 1899 Hoffenheim",
   points2019 = 52,

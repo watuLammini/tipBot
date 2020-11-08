@@ -19,7 +19,7 @@ data LTeam = LTeam {
   } deriving Show
 
 data Team = Team {
-  name :: String,
+  _name :: String,
   _points :: Map.Map Int Int
   } deriving Show
 
@@ -62,8 +62,8 @@ newtype Teams = Teams { _getTeams :: Map.Map String Team } deriving Show
 
 makeLenses ''LTeam
 makeLenses ''Team
-makeLenses ''LTeams
 makeLenses ''Teams
+makeLenses ''LTeams
 makeLenses ''LGame
 makeLenses ''LGames
 
