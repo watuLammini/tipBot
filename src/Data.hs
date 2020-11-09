@@ -22,6 +22,10 @@ import Control.Monad.Trans.Class
 import Control.Lens
 import Network.HTTP.Req
 import Debug.Trace
+
+-- !!!
+-- OLD MODULE, NOT RELEVANT ANYMORE, JUST HERE FOR DOCUMENTATION PURPOSES!
+-- !!!
 -- Lens Part
 
 instance FromJSON LTeams where

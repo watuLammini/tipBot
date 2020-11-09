@@ -1,9 +1,4 @@
-module Lib
-    {-( someFunc,
-      getNormProb,
-      getCategorialProb,
-      getMean
-    )-} where
+module Lib where
 
 import Types
 import Data
@@ -12,27 +7,30 @@ import qualified Data.Map as Map
 import Control.Lens
 import Control.Parallel
 
-getCategorialProb :: Double -> Double -> Double
+getCategorialProb :: Fractional a => a -> a -> a
 getCategorialProb numberOfUnion totalNumber = numberOfUnion / totalNumber
 
-getNormProb :: Double -> Double -> Double -> Double
+getNormProb :: Floating a => a -> a -> a -> a
 getNormProb x mean sd = exp (-((x-mean)^2 / (2*sd*sd))) / sqrt (2*sd*sd*pi)
 
-getNormProbSample :: Double -> [Double] -> Double
+getNormProbSample :: Floating a => a -> [a] -> a
 getNormProbSample x xs = getNormProb x mean sd
                          where mean = getMean xs
                                sd = getStan xs
 
-getMean :: [Double] -> Double
+getMean :: Fractional a => [a] -> a
 getMean xs = let sum = foldr (+) 0 xs
                  len = length xs
              in sum / (fromIntegral len)
 
+getStan :: Floating a => [a] -> a
 getStan xs = sqrt (totalSum / (fromIntegral $ length xs))
        where mean = getMean xs
              innerSum = map (flip (-) mean) xs
              quadrSum = map (^2) innerSum
              totalSum = foldr (+) 0 $ quadrSum
+
+-- OLD
 
 allPoints2019 = map fromIntegral $ map points2019 $ Map.elems $ getTeamsOld dummyTeams :: [Double]
 allPoints2018 = map fromIntegral $ map points2018 $ Map.elems $ getTeamsOld dummyTeams :: [Double]
@@ -62,8 +60,9 @@ testProbPar = do
   putStrLn $ show result
   return ()
 
+-- END OLD
+
 -- Give back all the probabilites for results
---probabilitiesResults :: Map.Map String (Map.Map String Int) -> Int
 probabilitiesResults :: Map.Map String (Map.Map String Int) -> Map.Map String Double
 probabilitiesResults results =
   Map.map (\noMatches -> (fromIntegral noMatches) / (fromIntegral total)) summedUp
@@ -71,7 +70,6 @@ probabilitiesResults results =
     summedUp = Map.map sumItUp results
     sumItUp = Map.foldr (+) 0
     total = Map.foldr (+) 0 summedUp
---  Map.empty
 
 probsPointsCondResultsIt :: Map.Map String (Map.Map String Int) -> Teams -> Int -> Map.Map String [Int]
 probsPointsCondResultsIt results rawTeams saison =
@@ -83,17 +81,14 @@ probsPointsCondResultsIt results rawTeams saison =
     generatePointsList :: Map.Map String Int -> [Int]
     generatePointsList = Map.foldrWithKey gPLit []
     gPLit teamName 1 list = (getPoints teamName) : list
-    gPLit teamName counter list = (getPoints teamName) : (gPLit teamName (counter-1) list)
---    Take care, unsafe!
+    gPLit teamName counter list = (getPoints teamName) `par` (gPLit teamName (counter-1) list)
+                                    `pseq` (getPoints teamName) : (gPLit teamName (counter-1) list)
     getPoints :: String -> Int
---    getPoints teamName = (_points (teams Map.! teamName)) Map.! saison
---    getPoints teamName = (view points (teams Map.! teamName)) Map.! saison
     getPoints teamName = getPointsIt $ view (at teamName) teams
     getPointsIt (Just team) = getPointsItIt (view points team)
     getPointsIt Nothing = -99
     getPointsItIt teamPoints = fromMaybe (-99) $ teamPoints Map.!? saison
 --    getPointsItIt teamPoints = fromMaybe (-99) (view (at saison) teamPoints)
-
 
 probsPointsCondResults :: Map.Map String (Map.Map String Int) -> Teams -> Team -> Int -> Map.Map String Double
 probsPointsCondResults results rawTeams team saison =
@@ -120,7 +115,8 @@ probResult results rawTeams team saisons =
    probsResults = probabilitiesResults results
    probsCondSaisons = Map.elems $ probsPointsCondResultsSaisons results rawTeams team saisons
    probsCondSaisonsUnited = Map.unionsWith (*) probsCondSaisons
-   finalProbs = Map.unionWith (*) probsResults probsCondSaisonsUnited
+   finalProbs = probsCondSaisons `par` probsCondSaisonsUnited
+                  `pseq` Map.unionWith (*) probsResults probsCondSaisonsUnited
 
 -- For testing:
 -- results <- getResults

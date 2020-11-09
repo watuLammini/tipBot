@@ -12,6 +12,7 @@ import Control.Lens
 import Network.HTTP.Req
 import qualified Data.Vector as V
 import Control.Monad.IO.Class
+import Control.Parallel
 
 
 instance FromJSON Teams where

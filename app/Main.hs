@@ -17,7 +17,7 @@ main = do
   putStrLn "Enter the saisons, on which the data should be based"
   saisonsInput <- getLine
   let saisons = read saisonsInput :: [Int]
-  results <- getResults saisons
+  results <- (finalTeams saisons) `par` (getResults saisons)
   teams <- finalTeams saisons
   let maybeTeam = view (at teamName) (_getTeams teams)
   let makeResult team = extractIt $ head $ Map.toList $ probResult results teams team saisons
