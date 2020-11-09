@@ -75,15 +75,15 @@ probabilitiesResults results =
 
 probsPointsCondResultsIt :: Map.Map String (Map.Map String Int) -> Teams -> Int -> Map.Map String [Int]
 probsPointsCondResultsIt results rawTeams saison =
-  pointsMap
+  Map.map (filter (/= (-99))) pointsMap
   where
     teams = _getTeams rawTeams
     pointsMap :: Map.Map String [Int]
     pointsMap = Map.map generatePointsList results
     generatePointsList :: Map.Map String Int -> [Int]
     generatePointsList = Map.foldrWithKey gPLit []
-    gPLit teamName 1 list = (getPoints' teamName) : list
-    gPLit teamName counter list = (getPoints' teamName) : (gPLit teamName (counter-1) list)
+    gPLit teamName 1 list = (getPoints teamName) : list
+    gPLit teamName counter list = (getPoints teamName) : (gPLit teamName (counter-1) list)
 --    Take care, unsafe!
     getPoints :: String -> Int
 --    getPoints teamName = (_points (teams Map.! teamName)) Map.! saison
@@ -92,8 +92,7 @@ probsPointsCondResultsIt results rawTeams saison =
     getPointsIt (Just team) = getPointsItIt (view points team)
     getPointsIt Nothing = -99
     getPointsItIt teamPoints = fromMaybe (-99) $ teamPoints Map.!? saison
---    getPointsItIt teamPoints = fromMaybe (-99) (view (at saison) teamPoints
-    getPoints'
+--    getPointsItIt teamPoints = fromMaybe (-99) (view (at saison) teamPoints)
 
 
 probsPointsCondResults :: Map.Map String (Map.Map String Int) -> Teams -> Team -> Int -> Map.Map String Double
@@ -113,18 +112,17 @@ probsPointsCondResultsSaisons results rawTeams team saisons =
     saisonProbs = Map.fromList $ zip saisons $
                     map (probsPointsCondResults results rawTeams team) saisons
 
---probResult :: Map.Map String (Map.Map String Int) -> Teams -> Team -> [Int] -> (String, Double)
+probResult :: Map.Map String (Map.Map String Int) -> Teams -> Team -> [Int] -> Map.Map String Double
 probResult results rawTeams team saisons =
---  ("Test", 0.4)
---  Map.unionWith (*) probsResults probsCondSaisonsUnited
-  probsCondSaisonsUnited
+  Map.filter (>= maximum finalProbs) finalProbs
   where
    teams = _getTeams rawTeams
    probsResults = probabilitiesResults results
    probsCondSaisons = Map.elems $ probsPointsCondResultsSaisons results rawTeams team saisons
    probsCondSaisonsUnited = Map.unionsWith (*) probsCondSaisons
+   finalProbs = Map.unionWith (*) probsResults probsCondSaisonsUnited
 
 -- For testing:
--- resultos <- results
+-- results <- getResults
 -- teams <- finalTeams
 -- fcb = (_getTeams teams) Map.! "FC Bayern"

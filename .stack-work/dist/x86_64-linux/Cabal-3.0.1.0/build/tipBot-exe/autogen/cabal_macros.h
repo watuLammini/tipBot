@@ -55,6 +55,50 @@
   (major1) == 0 && (major2) == 6 && (minor) <= 2)
 #endif /* MIN_VERSION_containers */
 
+/* package lens-4.18.1 */
+#ifndef VERSION_lens
+#define VERSION_lens "4.18.1"
+#endif /* VERSION_lens */
+#ifndef MIN_VERSION_lens
+#define MIN_VERSION_lens(major1,major2,minor) (\
+  (major1) <  4 || \
+  (major1) == 4 && (major2) <  18 || \
+  (major1) == 4 && (major2) == 18 && (minor) <= 1)
+#endif /* MIN_VERSION_lens */
+
+/* package parallel-3.2.2.0 */
+#ifndef VERSION_parallel
+#define VERSION_parallel "3.2.2.0"
+#endif /* VERSION_parallel */
+#ifndef MIN_VERSION_parallel
+#define MIN_VERSION_parallel(major1,major2,minor) (\
+  (major1) <  3 || \
+  (major1) == 3 && (major2) <  2 || \
+  (major1) == 3 && (major2) == 2 && (minor) <= 2)
+#endif /* MIN_VERSION_parallel */
+
+/* package pretty-simple-3.2.3.0 */
+#ifndef VERSION_pretty_simple
+#define VERSION_pretty_simple "3.2.3.0"
+#endif /* VERSION_pretty_simple */
+#ifndef MIN_VERSION_pretty_simple
+#define MIN_VERSION_pretty_simple(major1,major2,minor) (\
+  (major1) <  3 || \
+  (major1) == 3 && (major2) <  2 || \
+  (major1) == 3 && (major2) == 2 && (minor) <= 3)
+#endif /* MIN_VERSION_pretty_simple */
+
+/* package req-3.2.0 */
+#ifndef VERSION_req
+#define VERSION_req "3.2.0"
+#endif /* VERSION_req */
+#ifndef MIN_VERSION_req
+#define MIN_VERSION_req(major1,major2,minor) (\
+  (major1) <  3 || \
+  (major1) == 3 && (major2) <  2 || \
+  (major1) == 3 && (major2) == 2 && (minor) <= 0)
+#endif /* MIN_VERSION_req */
+
 /* package text-1.2.4.0 */
 #ifndef VERSION_text
 #define VERSION_text "1.2.4.0"
@@ -210,7 +254,7 @@
 #endif /* MIN_TOOL_VERSION_strip */
 
 #ifndef CURRENT_COMPONENT_ID
-#define CURRENT_COMPONENT_ID "tipBot-0.1.0.0-DBdrJQDImo5E134fHpL17x-tipBot-exe"
+#define CURRENT_COMPONENT_ID "tipBot-0.1.0.0-1wnYgeSMKTKJ2DUU0ymImF-tipBot-exe"
 #endif /* CURRENT_COMPONENT_ID */
 #ifndef CURRENT_PACKAGE_VERSION
 #define CURRENT_PACKAGE_VERSION "0.1.0.0"

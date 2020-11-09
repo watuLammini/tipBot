@@ -57,7 +57,7 @@ getTeamsApi year = runReq defaultHttpConfig $ do
     else return ()
   return result
 
-finalTeams :: IO Teams
-finalTeams = do
-  result <- getAllTeams getTeamsApi [2016..2019]
+finalTeams :: [Int] -> IO Teams
+finalTeams saison = do
+  result <- getAllTeams getTeamsApi saison
   return result

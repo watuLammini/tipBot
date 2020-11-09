@@ -114,9 +114,9 @@ finalGames saisons = do
       gamesUnited = LGames $ Map.unions gamesMap
   return gamesUnited
 
-results :: IO (Map.Map String (Map.Map String Int))
-results = do
-  games <- finalGames [2018..2019]
+getResults :: [Int] -> IO (Map.Map String (Map.Map String Int))
+getResults saisons = do
+  games <- finalGames saisons
 --  let result = Map.foldr (\game map -> Map.insertWith (\new old -> new ++ old)
 --                           (getLResult game) [(_lteam1 game)] map) Map.empty (_getLGames games)
 

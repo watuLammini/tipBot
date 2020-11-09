@@ -79,7 +79,7 @@ decodeLJSON year = do
 --over (at "Test") (\t1 -> case t1 of (Just tt1) -> Just $ tt1 { _lpoints2019 = 66 }; Nothing -> Just t2) (_getLTeams lt)
 
 viewTestTeam = do
-  teams <- finalTeams
+  teams <- finalTeams [2016..2019]
   let fcb = fromMaybe (Team "" Map.empty) $ view (at "FC Bayern") (_getTeams teams)
 --  let result = view points fcb
   let result = (view (at "FC Bayern") (_getTeams teams)) >>= (\x -> Just $ view points x)
